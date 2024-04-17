@@ -1,0 +1,23 @@
+{% load render_partial %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'header_ref.html' %}
+    {% block header_ref %} {% endblock header_ref %}
+</head>
+
+<body>
+{% render_partial 'home_module.views.header_render_partial' %}
+<main>{% block content %} {% endblock content %}</main>
+{% render_partial 'home_module.views.footer_render_partial' %}
+{% include 'footer_ref.html' %}
+{% block footer_ref %} {% endblock footer_ref %}
+<div id="back-top"><a title="Go to Top" href="#"> <i class="fas fa-level-up-alt"></i></a></div>
+</body>
+</html>

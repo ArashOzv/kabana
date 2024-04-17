@@ -1,0 +1,44 @@
+{% for discount in discounts %}
+<div class="single-services d-flex align-items-center">
+    <div class="features-img">
+        {% thumbnail discount.book.front_cover_image "282×427" as im %}
+        <img src="{{im.url}}" alt="">
+    </div>
+    <div class="features-caption">
+        <h3>{{discount.book.title}}</h3>
+        <p>نویسنده:<a href="#" target="_parent" class="author">{{discount.book.author.name}}</a></p>
+        <div class="price">
+            <p>{{}}<span>تومان</span></p>
+        </div>
+        <div class="review">
+            <div class="rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+            <p>(<span>120</span> نظر)</p>
+        </div>
+        <a href="book-details.html" class="border-btn">اطلاعات بیشتر</a>
+    </div>
+    <div class="timer">
+        <div class="countdown_dashboard">
+            <div class="dash day_dash"> <span class="dash_title">روز</span>
+                <div class="digi_num">
+                    <div class="digit">0</div>
+                    <div class="digit">0</div>
+                </div>
+            </div>
+            <div id="countdown">
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+
+

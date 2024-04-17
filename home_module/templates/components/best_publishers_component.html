@@ -1,0 +1,30 @@
+
+
+<section class="publishers">
+    <div class="container">
+        <div class="row">
+            <div class="section-tittle">
+                <h2>ناشران برتر</h2>
+            </div>
+        </div>
+
+        <div class="row lists">
+
+            {% for publisher in best_publishers %}
+                <div class="list" id="item-{{publisher.id}}">
+                            <div class="list-image">
+                                <a href="publisher-details.html" target="_self">
+                                    <img src="{{publisher.image.url}}" alt="" />
+                                </a>
+                            </div>
+            
+                            <div class="list-caption">
+                                <a href="publisher-details.html" target="_self">{{publisher.name}}</a>
+                                <p>تعداد کتب در این سایت:<span> {{publisher.books}} عدد</span></p>
+                            </div>
+                </div>    
+            {% endfor %}
+
+        </div>
+    </div>
+</section>

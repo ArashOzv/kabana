@@ -1,0 +1,172 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}
+    ناشران
+{% endblock title %}
+
+
+{% block content %}
+        <div class="breadcrumb-items">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index.html" class="breadcrumb-link">صفحه اصلی</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                        <span class="breadcrumb-active">ناشران</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="slider-area">
+                        <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+                            <div class="hero-caption hero-caption2">
+                                <h2>ناشران</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="publisher_area section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mb-5 mb-lg-0">
+                        <div class="publisher_left_sidebar">
+                            {% for publisher in all_publishers %}
+                            <article class="publisher_item">
+                                <div class="publisher_item_img">
+                                    <img class="card-img rounded-0" src="{{publisher.image.url}}" alt="">
+                                    <a href="#" class="publisher_item_date">
+                                        <h3>تأسیس</h3>
+                                        <p>1367</p>
+                                    </a>
+                                </div>
+                                <div class="publisher_details">
+                                    <a class="d-inline-block" href="publisher-details.html">
+                                        <h2 class="publisher-head" style="color: #2d2d2d;">{{publisher.name}}</h2>
+                                    </a>
+                                    <p>
+                                        {{publisher.description}}
+                                    </p>
+                                    <ul class="publisher-info-link">
+                                        <li><a href="#"><i class="fa fa-user"></i> 8 کتاب</a></li>
+                                        <li><a href="#"><i class="fa fa-comments"></i> 3 نظر</a></li>
+                                    </ul>
+                                </div>
+                            </article>
+                            {% endfor %}
+                            <!-- <nav class="publisher-pagination justify-content-center d-flex">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="next">
+                                            <i class="ti-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link">1</a>
+                                    </li>
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">2</a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a href="#" class="page-link" aria-label="Previous">
+                                            <i class="ti-angle-left"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="publisher_right_sidebar">
+                            <aside class="single_sidebar_widget search_widget">
+                                <form action="#">
+                                    <div class="form-group m-0">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="جستجو">
+                                            <div class="input-group-append d-flex">
+                                                <button class="boxed-btn2" type="button">جستجو</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </aside>
+                            <aside class="single_sidebar_widget post_category_widget">
+                                <h4 class="widget_title" style="color: #2d2d2d;">دسته بندی براساس ژانر</h4>
+                                <ul class="list cat-list">
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>تاریخی</p>
+                                            <p>(37)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>بیوگرافی</p>
+                                            <p>(10)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>مذهبی</p>
+                                            <p>(03)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>روانشناسی</p>
+                                            <p>(11)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>پزشکی</p>
+                                            <p>(21)</p>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="d-flex">
+                                            <p>خودشناسی</p>
+                                            <p>(09)</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </aside>
+                            <aside class="single_sidebar_widget popular_post_widget">
+                                <h3 class="widget_title" style="color: #2d2d2d;">ناشران برتر</h3>
+                                {% for top_publisher in top_publishers %}
+                                <div class="media post_item">
+                                    <img src="{{top_publisher.image.url}}" alt="post">
+                                    <div class="media-body">
+                                        <a href="publisher-details.html">
+                                            <h3 style="color: #2d2d2d;">{{top_publisher.name}}</h3>
+                                        </a>
+                                        <p>تعداد کتاب: {{top_publisher.books}}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </aside>
+                            <aside class="single_sidebar_widget newsletter_widget">
+                                <h4 class="widget_title" style="color: #2d2d2d;">خبرنامه کابانا</h4>
+                                <form action="#">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ایمیل'" placeholder="ایمیل" required="">
+                                    </div>
+                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">عضویت</button>
+                                </form>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}

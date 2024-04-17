@@ -1,0 +1,69 @@
+    <section class="our-client section-padding best-selling" id="book_content">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-xl-5 col-lg-5 col-md-12">
+
+                    <div class="section-tittle  mb-40">
+                        <h2>جدیدترین کتبــ</h2>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-12">
+                    <div class="nav-button mb-40">
+
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                {% for cat in cats %}
+                                <a class="nav-link {% if cat.id|stringformat:"s" == cat_id %}active{% endif %}" aria-selected="true" id="nav-tab" data-bs-toggle="tab" href="#nav" role="tab" aria-controls="nav" onclick="FilterByCat({{cat.id}})">{{cat.name}}</a>
+                                <form action="" method="get" id="book_by_cat">
+                                    <input type="hidden" name="cat_id" id="cat_id" value="{{cat.id}}">
+                                </form>
+                                {% endfor %}
+                                <a class="nav-link {% if not cat_id %}active{% endif %}" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" onclick="FilterByCat(0)">همه</a>
+                            </div>
+                        </nav>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="book-content">
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+
+                    <div class="row">
+                        {% for book in newest_books %}
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="properties pb-30">
+                                <div class="properties-card">
+                                    <div class="properties-img">
+                                        <a href="{% url 'book_detail_page' book.name book.id %}"><img src="{{book.front_cover_image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="properties-caption properties-caption2">
+                                        <h3><a href="{% url 'book_detail_page' book.name book.id %}">{{book.name}}</a></h3>
+                                        <p>نویسنده:<a href="#" target="_parent" class="author">{{book.author.name}}</a></p>
+                                        <div
+                                            class="properties-footer d-flex justify-content-between align-items-center">
+                                            <div class="review">
+                                                <div class="rating">
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star-half-alt"></i>
+                                                </div>
+                                                <p>(<span>20</span> نظر)</p>
+                                            </div>
+                                            <div class="price">
+                                                <p>{{book.price}}<span>تومان</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

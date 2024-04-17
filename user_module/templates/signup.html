@@ -1,0 +1,43 @@
+{% extends '_layout.html' %}
+
+{% block title %}
+    ثبت نام
+{% endblock title %}
+
+
+{% block content %}
+<div class="breadcrumb-items">
+    <div class="row">
+        <ul class="breadcrumb">
+            <li>
+                <a href="index.html" class="breadcrumb-link">صفحه اصلی</a>
+            </li>
+            <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+            <li>
+                <span class="breadcrumb-active">ورود</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="register-form-area">
+    <div class="register-form">
+        <form action="{% url 'signup_page' %}" method="post">
+        {% csrf_token %}
+        <div class="register-heading">
+            <span>ثبت نام</span>
+            <p>برای دسترسی به سایت ثبت نام کنید</p>
+        </div>
+
+        {{sign_up_form.as_p}}
+        {{sign_up_form.errors}}
+        <p class="error alert-danger">{{error}}</p>
+
+        <div class="register-footer">
+            <p>حساب کاربری دارید؟ <a href="login.html">وارد شوید</a></p>
+            <button class="submit-btn3">ثبت نام</button>
+        </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

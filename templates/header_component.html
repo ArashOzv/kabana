@@ -1,0 +1,92 @@
+{% load static %}
+<header>
+    <div class="header-area">
+        <div class="main-header ">
+            <div class="header-top ">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="d-flex justify-content-between align-items-center flex-sm">
+                                <div class="header-info-left d-flex align-items-center">
+
+                                    <div class="logo">
+                                        <a href="{% url 'home_page' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                                    </div>
+
+                                    <form action="#" class="form-box">
+                                        <input type="text" name="Search"
+                                            placeholder="جستجوی کتاب براساس نویسنده یا انتشارات">
+                                        <div class="search-icon">
+                                            <i class="ti-search"></i>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="header-info-right d-flex align-items-center">
+                                    <ul>
+                                        {% if not request.user.is_authenticated %}
+                                        <li><a href="{% url 'login_page' %}" class="btn header-btn">ورود</a></li>
+                                        {% else %}
+                                        <li class="shopping-card1">
+                                            <a href="#" class="btn btn-green"><img src="{% static ' img/icon/cart.svg' %}" alt="">سبد خرید</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom  header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12">
+
+                            <div class="logo2">
+                                <a href="{% url 'home_page' %}"><img src="{% static 'img/logo/logo.png' %}" alt=""></a>
+                            </div>
+
+                            <div class="main-menu text-center d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation" class="menu">
+                                        <li><a href="{% url 'home_page' %}">صفحه اصلی</a></li>
+
+                                        <li><a href="#">دسته بندی موضوعی</a>
+
+                                            <div class="megadrop">
+                                                <div class="mega-head">
+                                                    <div class="col">
+                                                        <ul>
+                                                            {% for cat in cats %}
+                                                            <li>
+                                                                <a href="categories.html">{{cat.name}}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="mega-foot">
+                                                    <div class="col-12">
+                                                        <a href="{% url 'authors_page' %}">صفحه نویسندگان</a>
+                                                        <a href="{% url 'publishers_page' %}">صفحه ناشران</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><a href="blog.html">وبلاگ</a></li>
+                                        <li><a href="about.html">درباره ما</a></li>
+                                        <li><a href="contact.html">تماس با ما</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

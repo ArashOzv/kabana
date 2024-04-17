@@ -1,0 +1,287 @@
+{% extends '_layout.html' %}
+{% load static %}
+{% load thumbnail %}
+{% load render_partial %}
+
+
+{% block title %}
+    خانه
+{% endblock title %}
+
+
+{% block content %}
+    <div class="slider-area home">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="slider-active dot-style">
+
+                        <div class="single-slider slider-height slider-bg1 d-flex align-items-center">
+                            <div class="container">
+                                <div class="row slider-title">
+                                    <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                                        <div class="hero-caption">
+                                            <h1 data-animation="fadeInUp" data-delay=".4s">ده کتاب برتر جامعه شناسی
+                                            </h1>
+                                            <a href="#" class="btn hero-btn" data-animation="bounceIn"
+                                                data-delay=".8s">مشاهده مقاله</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-slider slider-height slider-bg2 d-flex align-items-center">
+                            <div class="container">
+                                <div class="row slider-title">
+                                    <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                                        <div class="hero-caption">
+                                            <h1 data-animation="fadeInUp" data-delay=".4s">همه چیز همه چیز</h1>
+                                            <a href="#" class="btn hero-btn" data-animation="bounceIn"
+                                                data-delay=".8s">مشاهده کتاب</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-slider slider-height slider-bg3 d-flex align-items-center">
+                            <div class="container">
+                                <div class="row slider-title">
+                                    <div class="col-xxl-4 col-xl-4 col-lg-5 col-md-6 col-sm-7">
+                                        <div class="hero-caption">
+                                            <h1 data-animation="fadeInUp" data-delay=".4s">کار را انجام دهید</h1>
+                                            <a href="#" class="btn hero-btn" data-animation="bounceIn"
+                                                data-delay=".8s">خرید کتاب</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="categories-slider">
+        <div class="container">
+            <div class="row justify-content-right">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle">
+                        <h2>دسته بندی های کابانا</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="categories-active">
+                        {% for category in categories %}
+                        <div class="category-item">
+                            <a href="categories.html" class="category-img"><img src="{{ category.image.url }}" alt="" loading="lazy"></a>
+                            <a class="category-caption" href="categories.html">کتب {{ category.name }}</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="best-selling section-bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-8">
+                    <div class="section-tittle text-center mb-55">
+                        <h2>پرفروش ترین های این هفته</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="selling-active">
+                        {% for book in most_sold_books %}
+                        <div class="properties pb-20">
+                            <div class="properties-card">
+                                <div class="properties-img">
+                                    {% thumbnail book.front_cover_image "198x298" as im %}
+                                        <a href=""><img src="{{ im.url }}" alt=""></a> <!--add the url-->
+                                    {% endthumbnail %}
+                                </div>
+                                <div class="properties-caption">
+                                    <h3><a href="">{{book.title}}</a></h3> <!--add the url-->
+                                    <a href="#" target="_parent">{{book.author.name}}</a>
+                                    <div class="properties-footer">
+                                        <div class="review">
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <p>(<span>12</span> نظر)</p>
+                                        </div>
+                                        <div class="price">
+                                            <p>{{book.price}}<span>تومان</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="services-area2 top-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 gap-3" style="margin-bottom: 10px;">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="best-author-title">
+                                <h3>تخفیفات</h3>
+                              </div>
+                            <div class="services-active">
+                                <div class="single-services d-flex align-items-center">
+                                    <div class="features-img">
+                                        <img src="{% static 'img/book/best-books1.jpg' %}" alt="">
+                                    </div>
+                                    <div class="features-caption">
+                                        <h3>رهایی</h3>
+                                        <p>نویسنده:<a href="#" target="_parent" class="author">ویرجینیا وولف</a></p>
+                                        <div class="price">
+                                            <p>110.000<span>تومان</span></p>
+                                        </div>
+                                        <div class="review">
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <p>(<span>120</span> نظر)</p>
+                                        </div>
+                                        <a href="book-details.html" class="border-btn">اطلاعات بیشتر</a>
+                                    </div>
+                                    <div class="timer">
+                                        <div class="countdown_dashboard">
+                                            <div class="dash day_dash"> <span class="dash_title">روز</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash hour_dash"> <span class="dash_title">ساعت</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash min_dash"> <span class="dash_title">دقیقه</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash sec_dash"> <span class="dash_title">ثانیه</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="single-services d-flex align-items-center">
+                                    <div class="features-img">
+                                        <img src="{% static 'img/book/best-books2.jpg' %}" alt="">
+                                    </div>
+                                    <div class="features-caption">
+                                        <h3>اثر مرکب</h3>
+                                        <p>نویسنده:<a href="#" target="_parent" class="author">دارن هاردی</a></p>
+                                        <div class="price">
+                                            <p>180.000<span>تومان</span></p>
+                                        </div>
+                                        <div class="review">
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <p>(<span>225</span> نظر)</p>
+                                        </div>
+                                        <a href="book-details.html" class="border-btn">اطلاعات بیشتر</a>
+                                    </div>
+                                    <div class="timer">
+                                        <div class="countdown_dashboard">
+                                            <div class="dash day_dash"> <span class="dash_title">روز</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash hour_dash"> <span class="dash_title">ساعت</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash min_dash"> <span class="dash_title">دقیقه</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                            <div class="dash sec_dash"> <span class="dash_title">ثانیه</span>
+                                                <div class="digi_num">
+                                                    <div class="digit">0</div>
+                                                    <div class="digit">0</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--discount section-->
+                <br><br><br>
+                {% render_partial 'home_module.component_views.best_authors_component' %}
+            </div>
+        </div>
+    </div>
+
+{% render_partial 'home_module.component_views.newest_books_component' %}
+{% render_partial 'home_module.component_views.best_publishers_component' %}
+{% render_partial 'home_module.component_views.Index_comments_component' %}
+
+
+    <section class="subscribe-area">
+        <div class="container">
+            <div class="subscribe-caption text-center subscribe-padding section-img2-bg"
+                data-background="{% static 'img/bg/newsletter-bg.jpg' %}">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8 col-md-9">
+                        <h3>خبرنامه کابانا</h3>
+                        <p>هر ماه یک کتاب الکترونیکی رایگان به ایمیل اعضای خبرنامه ارسال می گردد.</p>
+                        <form action="#">
+                            <input type="text" placeholder="ایمیل">
+                            <button class="subscribe-btn">عضویت در خبرنامه</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+

@@ -1,0 +1,23 @@
+{% load thumbnail %}
+<div class="col-xl-12 col-lg-12 col-md-12 gap-3" style="margin-top: 10px;">
+    <div class="best-author">
+      <div class="best-author-title">
+        <h3>نویسندگان برتر</h3>
+      </div>
+      <hr>
+      <ul class="best-author-box">
+        {% for author in authors %}
+        <li>    
+            <img src="{{author.image.url}}" alt="">
+            <p>{{author.name}}</p>
+          <a href="author-details.html"><i class="fa-solid fa-circle-chevron-left"></i></a>
+        </li>
+        {% endfor %}
+      </ul>
+      <hr>
+      <div class="best-author-footer">
+        <a href="author.html">همه نویسندگان</a>
+        <a href="author.html"><i class="fa-solid fa-circle-chevron-left"></i></a>
+      </div>
+    </div>
+  </div>

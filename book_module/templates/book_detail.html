@@ -1,0 +1,324 @@
+{% extends '_layout.html' %}
+{% load static %}
+{% load render_partial %}
+
+{% block title %}
+    {{book.name}}
+{% endblock title %}
+
+{% block content %}
+        <div class="breadcrumb-items">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index.html" class="breadcrumb-link">صفحه اصلی</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                    </li><li>
+                        <a href="categories.html" class="breadcrumb-link">دسته بندی کتب</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                        <span class="breadcrumb-active">جزئیات کتاب</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="book-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="single-book d-flex align-items-center mb-0">
+                                    <div class="book-img">
+                                        <img src="{{book.front_cover_image.url}}" alt="">
+                                        {% if back_cover_image %}
+                                        <img src="{{book.back_cover_image.url}}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="book-caption">
+                                        <h3>{{book.name}}</h3>
+
+                                        <div class="review">
+                                            <div class="rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <p>(<span>12</span> نظر)</p>
+                                        </div>
+
+                                        <p>نویسنده: <a href="#" target="_self">{{book.author.name}}</a></p>
+                                        <p>مترجم: <a href="#" target="_self">{{book.translator}}</a></p>
+                                        <p>ناشر: <a href="#" target="_self">{{book.publisher.name}}</a></p>
+                                        <div class="price">
+                                            <p>{{book.price}}<span>تومان</span></p>
+                                        </div>
+                                        <a href="{% url 'add_to_cart' book.id %}" class="white-btn mr-10">افزودن به سبد خرید</a>
+                                        <a href="#" class="border-btn book-btn share-btn"><i class="fas fa-share-alt"></i></a>
+                                        <a href="#" class="border-btn book-btn print-btn"><i class="fas fa-print"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="our-client section-padding best-selling">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-xl-1 col-xl-10">
+                        <div class="nav-button f-right">
+
+                            <nav>
+                                <div class="nav nav-tabs " id="nav-tab" role="tablist">
+                                    <a class="nav-link" id="nav-one-tab" data-bs-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="false">توضیحات</a>
+                                    <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="false">درباره نویسنده</a>
+                                    <a class="nav-link" id="nav-three-tab" data-bs-toggle="tab" href="#nav-three" role="tab" aria-controls="nav-three" aria-selected="false">مشخصات کتاب</a>
+                                    <a class="nav-link active" id="nav-four-tab" data-bs-toggle="tab" href="#nav-four" role="tab" aria-controls="nav-four" aria-selected="true">نظرات</a>
+                                </div>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+
+                        <div class="row">
+                            <div class="desc-tab offset-xl-1 col-lg-9">
+                                <p>{{book.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
+
+                        <div class="row">
+                            <div class="author-img">
+                                <img src="{{book.author.image.url}}" alt="">
+                            </div>
+                            <div class="author-tab offset-xl-1 col-lg-9">
+                                <p>{{book.author.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="nav-three" role="tabpanel" aria-labelledby="nav-three-tab">
+
+                        <div class="row">
+                            <div class="table-book offset-xl-1 col-lg-9">
+                                <table class="details">
+                                    <thead>
+                                        <tr>
+                                            <th class="first">نام کتاب</th>
+                                            <th class="second">{{book.name}}<br></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="first">نویسنده</td>
+                                            <td class="second">{{book.author.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">مترجم</td>
+                                            <td class="second">{{book.translator}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">ناشر</td>
+                                            <td class="second">{{book.publisher.name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">فرمت کتاب</td>
+                                            <td class="second">چاپی</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">تعداد صفحات</td>
+                                            <td class="second">{{book.pages}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">زبان</td>
+                                            <td class="second">{{book.language}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">شابک</td>
+                                            <td class="second">{{book.isbn}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="first">دسته بندی کتاب</td>
+                                            <td class="second">{{book.category}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade active show" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab">
+
+                        <div class="row">
+                            <div class="comment-tab offset-xl-1 col-lg-9">
+                                <div class="container bootdey">
+                                    <div class="col-md-12 bootstrap snippets">
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <textarea class="form-control" rows="2" placeholder="نظر شما در مورد این کتاب چیست؟"></textarea>
+                                                <div class="mar-top clearfix">
+                                                    <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> ارسال نظر</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <div class="panel-body">
+                                                <!-- Newsfeed Content -->
+                                                <!--===================================================-->
+                                                <div class="media-block">
+                                                    <a class="media-right" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="{% static 'img/comments/first-comment.jpg' %}"></a>
+                                                    <div class="media-body">
+                                                        <div class="mar-btm">
+                                                            <a href="#" class="btn-link text-semibold media-heading box-inline">سمیرا</a>
+                                                            <p class="text-muted text-sm"><i class="fa fa-check fa-lg"></i>خریدار</p>
+                                                        </div>
+                                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
+                                                            با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه
+                                                            و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
+                                                            تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای
+                                                            کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و
+                                                            آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با </p>
+                                                        <div class="pad-ver">
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                                                <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                                            </div>
+                                                            <a class="btn btn-sm btn-default btn-hover-primary" href="#">پاسخ</a>
+                                                        </div>
+                                                        <hr>
+
+                                                        <!-- Comments -->
+                                                        <div>
+                                                            <div class="media-block">
+                                                                <a class="media-right" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="{% static 'img/comments/second-comment.jpg' %}"></a>
+                                                                <div class="media-body">
+                                                                    <div class="mar-btm">
+                                                                        <a href="#" class="btn-link text-semibold media-heading box-inline">صابر</a>
+                                                                        <p class="text-muted text-sm"><i class="fa fa-person fa-lg"></i>کاربر
+                                                                            سایت</p>
+                                                                    </div>
+                                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                                        صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                                                                        چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                                                        سطرآنچنان که لازم است، و برای شرایط فعلی
+                                                                        تکنولوژی مورد نیاز، و </p>
+                                                                    <div class="pad-ver">
+                                                                        <div class="btn-group">
+                                                                            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                                                            <a class="btn btn-sm btn-default btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i>
+                                                                                <span>یک رأی موافق</span></a>
+                                                                        </div>
+                                                                        <a class="btn btn-sm btn-default btn-hover-primary" href="#">پاسخ</a>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="media-block">
+                                                                <a class="media-right" href="#"><img class="img-circle img-sm" alt="Profile Picture" src="{% static 'img/comments/third-comment.jpg' %}">
+                                                                </a>
+                                                                <div class="media-body">
+                                                                    <div class="mar-btm">
+                                                                        <a href="#" class="btn-link text-semibold media-heading box-inline">مهشید</a>
+                                                                        <p class="text-muted text-sm"><i class="fa fa-person fa-lg"></i>کاربر
+                                                                            سایت</p>
+                                                                    </div>
+                                                                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از
+                                                                        صنعت چاپ، و با استفاده از طراحان گرافیک است،
+                                                                        چاپگرها و </p>
+                                                                    <div class="pad-ver">
+                                                                        <div class="btn-group">
+                                                                            <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                                                            <a class="btn btn-sm btn-default btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                                                        </div>
+                                                                        <a class="btn btn-sm btn-default btn-hover-primary" href="#">پاسخ</a>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--===================================================-->
+                                                <!-- End Newsfeed Content -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="related-books section-bg">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-7 col-lg-8">
+                        <div class="section-tittle text-center mb-55">
+                            <h2>کتاب های مرتبط</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="related-books-box slick-initialized slick-slider slick-dotted">
+                                {% for book in related_books %}
+                                <div class="properties pb-20 slick-slide slick-cloned" tabindex="-1" role="tabpanel" aria-describedby="slick-slide-control06" style="width: 218px;" data-slick-index="-1" aria-hidden="true">
+                                    <div class="properties-card">
+                                        <div class="properties-img">
+                                            <a href="book-details.html" tabindex="-1"><img src="{{book.front_cover_image.url}}" alt=""></a>
+                                        </div>
+                                        <div class="properties-caption">
+                                            <h3><a href="book-details.html" tabindex="-1">{{book.name}}</a></h3>
+                                            <a href="#" target="_parent" tabindex="-1">{{book.author.name}}</a>
+                                            <div class="properties-footer">
+                                                <div class="review">
+                                                    <div class="rating">
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star"></i>
+                                                        <i class="fas fa-star-half-alt"></i>
+                                                    </div>
+                                                    <p>(<span>12</span> نظر)</p>
+                                                </div>
+                                                <div class="price">
+                                                    <p>{{book.price}}<span>تومان</span></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                                <ul class="slick-dots" style="display: block;" role="tablist"><li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 4" tabindex="-1">1</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 4" tabindex="-1">2</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 4" tabindex="-1">3</button></li><li role="presentation"><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 4" tabindex="-1">4</button></li><li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 4" tabindex="-1">5</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control05" aria-controls="slick-slide05" aria-label="6 of 4" tabindex="-1">6</button></li><li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control06" aria-controls="slick-slide06" aria-label="7 of 4" tabindex="0" aria-selected="true">7</button></li></ul></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <section class="subscribe-area">
+    {% render_partial 'newsletter_module.component_views.SubscribeView' %}
+    </section>
+
+
+{% endblock content %}
+

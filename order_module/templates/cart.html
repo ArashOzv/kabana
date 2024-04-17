@@ -1,0 +1,164 @@
+{% extends '_layout.html' %}
+
+
+{% block title %}
+    سبد خرید
+{% endblock title %}
+
+
+{% block content %}
+        <div class="breadcrumb-items">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index.html" class="breadcrumb-link">صفحه اصلی</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                    </li><li>
+                        <a href="categories.html" class="breadcrumb-link">دسته بندی کتب</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                        <span class="breadcrumb-active">سبد خرید</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="slider-area">
+                        <div class="slider-height2 slider-bg5 d-flex align-items-center justify-content-center">
+                            <div class="hero-caption hero-caption2">
+                                <h2>سبد خرید</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if books_in_cart %}
+        <section class="cart_area section-padding">
+            <div class="container">
+                <div class="cart_inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">محصول</th>
+                                    <th scope="col">قیمت</th>
+                                    <th scope="col">تعداد</th>
+                                    <th scope="col">جمع نهایی</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in books_in_cart %}
+                                <tr>
+                                    <td>
+                                        <div class="media">
+                                            <div class="d-flex">
+                                                <a href="book-details.html" target="_self">
+                                                    <img src="img/book/best-books1.jpg" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="book-details.html" target="_self">{{book.name}} اثر {{book.author.name}}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <h5>{{book.price}}<span>تومان</span></h5>
+                                    </td>
+                                    <td>
+                                        <!-- <div class="product_count">
+                                            <span class="input-number-decrement"> <i class="ti-minus"></i></span>
+                                            <input class="input-number" type="text" value="1" min="0" max="10">
+                                            <span class="input-number-increment"> <i class="ti-plus"></i></span>
+                                        </div> -->
+                                    </td>
+                                    <td>
+                                        <h5>{{book.price}}<span>تومان</span></h5>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+
+                                <!-- <tr class="bottom_button">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <a class="btn" href="#">بروزرسانی سبد خرید</a>
+                                    </td>
+                                </tr> -->
+                                <!-- <tr class="last-tr">
+                                    <td>
+                                        <h5>پرداخت نهایی</h5>
+                                    </td>
+                                    <td>
+                                        <h5>390.000<span>تومان</span></h5>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="shipping_area">
+                                    <td>
+                                        <h5>حمل و نقل</h5>
+                                    </td>
+                                    <td>
+                                        <div class="shipping_box">
+                                            <ul class="list">
+                                                <li>
+                                                    ارسال با پست: 70.000 تومان
+                                                    <input type="radio" aria-label="Radio button for following text input">
+                                                </li>
+                                                <li>
+                                                    ارسال رایگان
+                                                    <input type="radio" aria-label="Radio button for following text input">
+                                                </li>
+                                                <li>
+                                                    ارسال با پیک: 100.000 تومان
+                                                    <input type="radio" aria-label="Radio button for following text input">
+                                                </li>
+                                                <li class="active">
+                                                    تحویل حضوری
+                                                    <input type="radio" aria-label="Radio button for following text input">
+                                                </li>
+                                            </ul>
+                                            <h6>
+                                                ماشین حساب حمل و نقل
+                                                <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                            </h6>
+                                            <select class="shipping_select" style="display: none;">
+                                                <option value="1">تهران</option>
+                                                <option value="2">اصفهان</option>
+                                                <option value="3">خوزستان</option>
+                                                <option value="4">خراسان رضوی</option>
+                                            </select><div class="nice-select shipping_select" tabindex="0"><span class="current">تهران</span><ul class="list"><li data-value="1" class="option selected">تهران</li><li data-value="2" class="option">اصفهان</li><li data-value="3" class="option">خوزستان</li><li data-value="4" class="option">خراسان رضوی</li></ul></div>
+                                            <select class="shipping_select section_bg" style="display: none;">
+                                                <option value="1">تهران</option>
+                                                <option value="2">دماوند</option>
+                                                <option value="3">اسلامشهر</option>
+                                                <option value="4">ری</option>
+                                            </select><div class="nice-select shipping_select section_bg" tabindex="0"><span class="current">تهران</span><ul class="list"><li data-value="1" class="option selected">تهران</li><li data-value="2" class="option">دماوند</li><li data-value="3" class="option">اسلامشهر</li><li data-value="4" class="option">ری</li></ul></div>
+                                            <input class="post_code" type="text" placeholder="کدپستی">
+                                            <a class="btn" href="#">بروزرسانی جزئیات</a>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                        <div class="checkout_btn_inner float-right">
+                            <a class="btn checkout_btn" href="{% url 'request' %}">تسویه حساب</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p class=" alert alert-warning text-center">سبد خرید خالی است</p>
+        </section>
+        {% endif %}
+        {% endblock content %}

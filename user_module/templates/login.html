@@ -1,0 +1,43 @@
+{% extends '_layout.html' %}
+
+{% block title %}
+    ورود
+{% endblock title %}
+
+
+{% block content %}
+        <div class="breadcrumb-items">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="index.html" class="breadcrumb-link">صفحه اصلی</a>
+                    </li>
+                    <li class="chevron"><span class="fa fa-chevron-left"></span></li>
+                    <li>
+                        <span class="breadcrumb-active">ورود</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="login-form-area">
+            <div class="login-form">
+
+                <div class="login-heading">
+                    <span>ورود</span>
+                    <p>برای دسترسی به سایت وارد شوید</p>
+                </div>
+
+                <form action="{% url 'login_page' %}" method="post">
+                    {% csrf_token %}
+                    {{login_form.as_p}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    <div class="login-footer">
+                        <p>حساب کاربری ندارید؟ <a href="{% url 'signup_page' %}">ثبت نام</a> کنید.</p>
+                        <button class="submit-btn3" type="submit">ورود</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+{% endblock content %}
